@@ -1,0 +1,60 @@
+import 'package:e_commerce_shoes/Widget/button.dart';
+import 'package:e_commerce_shoes/Widget/text.dart';
+import 'package:e_commerce_shoes/Widget/textFormFeild.dart';
+import 'package:flutter/material.dart';
+
+class Recovery extends StatelessWidget {
+  Recovery({super.key});
+  final formkey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(25),
+          child: Form(
+            key: formkey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const TextCustom(
+                  text: "Recovery Password",
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
+                const SizedBox(height: 25,),
+                const TextCustom(
+                  text:
+                      "Please, enter your email address. You will\nreceive a link to create a new password via email ",
+                  fontSize: 17,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(25),
+                  child: Column(
+                    children: [
+                      Textformfeildcustom(
+                        KeyboardType: TextInputType.emailAddress,
+                        controller: emailController,
+                        label: "Your Email",
+                        prefixIcon: Icons.email,
+                      ),
+                      const SizedBox(height: 30,),
+                       ButtonCustomized(
+                      text: "Continue",
+                     color: const Color.fromARGB(255, 207, 57, 233),
+                      width: 300, 
+                      height: 50,
+                      borderRadius: 10,
+                      onPressed: () {}),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

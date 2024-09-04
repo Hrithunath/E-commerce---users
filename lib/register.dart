@@ -64,7 +64,7 @@ class Register extends StatelessWidget {
                     hintText: "Enter your password Again",
                     prefixIcon: Icons.lock,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   ButtonCustomized(
@@ -74,7 +74,7 @@ class Register extends StatelessWidget {
                       height: 50,
                       borderRadius: 10,
                       onPressed: () {}),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   const Row(

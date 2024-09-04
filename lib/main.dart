@@ -1,4 +1,5 @@
 import 'package:e_commerce_shoes/login.dart';
+import 'package:e_commerce_shoes/recovery.dart';
 import 'package:e_commerce_shoes/register.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home:Register(),
+      home:Recovery(),
     );
   }
 }
