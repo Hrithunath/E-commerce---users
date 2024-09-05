@@ -11,6 +11,7 @@ class TextCustom extends StatelessWidget {
   final double? height;
   final TextAlign? textAlign;
   final String? fontFamily;
+  final VoidCallback? onTap;
   const TextCustom({
     required this.text,
     this.fontSize,
@@ -21,23 +22,27 @@ class TextCustom extends StatelessWidget {
     this.wordSpacing,
     this.height,
     this.textAlign,
-    this.fontFamily, });
+    this.fontFamily,
+    this.onTap, });
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: TextStyle(
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        color: color,
-        fontStyle: fontStyle,
-        letterSpacing: letterSpacing,
-        wordSpacing: wordSpacing,
-        height: height,
-        fontFamily: fontFamily,
+    return GestureDetector(
+       onTap:onTap,
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          color: color,
+          fontStyle: fontStyle,
+          letterSpacing: letterSpacing,
+          wordSpacing: wordSpacing,
+          height: height,
+          fontFamily: fontFamily,
+        ),
+        textAlign: textAlign,
       ),
-      textAlign: textAlign,
     );
   }
 }

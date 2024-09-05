@@ -1,6 +1,7 @@
 import 'package:e_commerce_shoes/Widget/button.dart';
 import 'package:e_commerce_shoes/Widget/text.dart';
 import 'package:e_commerce_shoes/Widget/textFormFeild.dart';
+import 'package:e_commerce_shoes/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
@@ -55,7 +56,13 @@ class Login extends StatelessWidget {
                       width: 300, // Specific width
                       height: 50,
                       borderRadius: 10,
-                      onPressed: () {}),
+                      onPressed: ()async {
+                       await AuthService().signin(
+                        email: emailController.text,
+                        password: passWordController.text,
+                         context: context);
+
+                      }),
                   const SizedBox(
                     height: 25,
                   ),
@@ -77,7 +84,8 @@ class Login extends StatelessWidget {
                   const SizedBox(
                     height: 25,
                   ),
-                  const TextCustom(
+                   TextCustom(
+                    onTap: () => Navigator.pushNamed(context,"Recovery"),
                     text: "Forgot Password",
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
@@ -86,21 +94,22 @@ class Login extends StatelessWidget {
                   const SizedBox(
                     height: 25,
                   ),
-                  const Row(
+                  Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 45,
                       ),
-                      TextCustom(
+                      const TextCustom(
                         text: "Don’t have a account? ",
                         fontSize: 15,
                         fontWeight: FontWeight.w300,
                       ),
                       TextCustom(
+                        onTap: () => Navigator.pushNamed(context,"Register"),
                         text: "Register",
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 207, 57, 233),
+                        color: const Color.fromARGB(255, 207, 57, 233),
                       ),
                     ],
                   ),
