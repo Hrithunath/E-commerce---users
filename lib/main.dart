@@ -1,8 +1,8 @@
-import 'package:e_commerce_shoes/Home.dart';
+import 'package:e_commerce_shoes/presentation/pages/Home.dart';
 import 'package:e_commerce_shoes/firebase_options.dart';
-import 'package:e_commerce_shoes/login.dart';
-import 'package:e_commerce_shoes/recovery.dart';
-import 'package:e_commerce_shoes/register.dart';
+import 'package:e_commerce_shoes/presentation/pages/login.dart';
+import 'package:e_commerce_shoes/presentation/pages/recovery.dart';
+import 'package:e_commerce_shoes/presentation/pages/register.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 

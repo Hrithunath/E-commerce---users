@@ -1,4 +1,4 @@
-import 'package:e_commerce_shoes/Widget/text.dart';
+import 'package:e_commerce_shoes/presentation/Widget/text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 

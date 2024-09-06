@@ -1,6 +1,6 @@
-import 'package:e_commerce_shoes/Widget/button.dart';
-import 'package:e_commerce_shoes/Widget/text.dart';
-import 'package:e_commerce_shoes/Widget/textFormFeild.dart';
+import 'package:e_commerce_shoes/presentation/Widget/button.dart';
+import 'package:e_commerce_shoes/presentation/Widget/text.dart';
+import 'package:e_commerce_shoes/presentation/Widget/textFormFeild.dart';
 import 'package:flutter/material.dart';
 
 class Recovery extends StatelessWidget {
