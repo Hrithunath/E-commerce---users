@@ -1,17 +1,18 @@
-import 'package:e_commerce_shoes/presentation/pages/Home.dart';
 import 'package:e_commerce_shoes/firebase_options.dart';
-import 'package:e_commerce_shoes/presentation/pages/login.dart';
+import 'package:e_commerce_shoes/presentation/bloc/auth_bloc.dart';
+import 'package:e_commerce_shoes/presentation/pages/home.dart';
 import 'package:e_commerce_shoes/presentation/pages/recovery.dart';
-import 'package:e_commerce_shoes/presentation/pages/register.dart';
+import 'package:e_commerce_shoes/presentation/pages/signIn.dart';
+import 'package:e_commerce_shoes/presentation/pages/signUp.dart';
+import 'package:e_commerce_shoes/presentation/pages/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-Future<void> main()async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
-  );
-runApp(MyApp());
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -24,14 +25,25 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home:Register(),
-      routes: {
-        "Login":(context)=>Login(),
-        "Register":(context)=>Register(),
-        "Recovery":(context)=>Recovery(),
-        "Home":(context)=>Home(),
-      },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AuthBloc(),
+        ),
+        BlocProvider(
+          create: (context) => AuthBloc(),
+        ),
+      ],
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: SplashScreen(),
+          routes: {
+            "": (context) => SplashWrapper(),
+            "Login": (context) => Login(),
+            "Register": (context) => Register(),
+            "Recovery": (context) => Recovery(),
+            "Home": (context) => Home(),
+          }),
     );
   }
 }
