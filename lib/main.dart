@@ -12,7 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -36,13 +36,14 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: SplashScreen(),
+          home: const SplashWrapper(),
+          initialRoute: "/",
           routes: {
-            "": (context) => SplashWrapper(),
-            "Login": (context) => Login(),
-            "Register": (context) => Register(),
-            "Recovery": (context) => Recovery(),
-            "Home": (context) => Home(),
+            "/SplashWrapper": (context) => const SplashWrapper(),
+            "/Login": (context) => const LoginWrapper(),
+            "/Register": (context) => const RegisterWrapper(),
+            "/Recovery": (context) => Recovery(),
+            "/Home": (context) => const HomeWrapper(),
           }),
     );
   }

@@ -40,6 +40,10 @@ dependencies:
   fluttertoast: ^8.2.8
   bloc: ^8.1.4
   flutter_bloc: ^8.1.6
+  cloud_firestore: ^5.4.0
+  firebase_storage: ^12.2.0
+  google_sign_in: ^6.2.1
+   
 
 dev_dependencies:
   flutter_test:

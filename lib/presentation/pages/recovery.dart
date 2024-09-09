@@ -1,6 +1,8 @@
 import 'package:e_commerce_shoes/presentation/Widget/button.dart';
 import 'package:e_commerce_shoes/presentation/Widget/text.dart';
 import 'package:e_commerce_shoes/presentation/Widget/textFormFeild.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class Recovery extends StatelessWidget {
@@ -46,7 +48,9 @@ class Recovery extends StatelessWidget {
                       width: 300, 
                       height: 50,
                       borderRadius: 10,
-                      onPressed: () {}),
+                      onPressed: () {
+                        resetPassword(context);
+                      }),
                     ],
                   ),
                 ),
@@ -56,5 +60,38 @@ class Recovery extends StatelessWidget {
         ),
       ),
     );
+  }
+
+
+  void resetPassword(BuildContext context)async{
+     if (!formkey.currentState!.validate()) {
+      return;
+    }
+
+      final email = emailController.text.trim();
+
+   if (email.isNotEmpty) {
+     
+   
+   try {
+     await FirebaseAuth.instance
+   .sendPasswordResetEmail(email: email);
+    ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Password reset email sent. Check your inbox.'),
+          ),
+        );
+        await Future.delayed(const Duration(seconds: 2));
+            Navigator.pushReplacementNamed(context, "/login");
+   } catch (e) {
+     
+       ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Failed to send password reset email: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+   }
+   }
   }
 }

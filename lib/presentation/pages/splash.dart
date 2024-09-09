@@ -20,9 +20,9 @@ class SplashScreen extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
       if (state is Authenticated) {
-        Navigator.pushReplacementNamed(context, "Home");
+        Navigator.pushReplacementNamed(context, "/Home");
       }else if(state is UnAuthenticated){
-       Navigator.pushReplacementNamed(context, "Login");
+       Navigator.pushReplacementNamed(context, "/Login");
       }
       },
       child:Scaffold(

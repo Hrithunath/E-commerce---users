@@ -1,15 +1,15 @@
 class UserModel {
-  String? username;
+  String? name;
   String? password;
-  String? phoneNumber;
+  String? passwordAgain;
   String? email;
   String? uid;
 
   UserModel({
-    this.username,
+    this.name,
     this.password,
     this.email,
-    this.phoneNumber,
+    this.passwordAgain,
     this.uid,
   });
 }
