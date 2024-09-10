@@ -8,7 +8,7 @@ class SplashWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AuthBloc()..add(CheckLoginStatusEvent()),
-      child: SplashScreen(),
+      child: const SplashScreen(),
     );
   }
 }
@@ -26,15 +26,13 @@ class SplashScreen extends StatelessWidget {
       }
       },
       child:Scaffold(
-      body: Container(
+      body: SizedBox(
         height: double.infinity,
         width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              child: Image.asset('lib/assets/image/leather-shoes-wooden-background_1203-7617.avif'),
-            )
+            Image.asset('lib/assets/image/leather-shoes-wooden-background_1203-7617.avif')
           ],
         ),
       ),

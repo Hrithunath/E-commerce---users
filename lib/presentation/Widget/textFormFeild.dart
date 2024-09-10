@@ -1,18 +1,20 @@
-import 'package:e_commerce_shoes/presentation/Widget/text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class Textformfeildcustom extends StatelessWidget {
   final String label;
   final String? hintText;
-  final TextInputType? KeyboardType;
+  final TextInputType? keyboardType;
   final TextEditingController? controller;
   IconData? prefixIcon;
+   IconData? sufixIcon;
+  
    Textformfeildcustom({
     required this.label,
-    required this.prefixIcon,
+     this.prefixIcon,
+     
     this.hintText,
-    this.KeyboardType,
+    this.keyboardType,
     this.controller,
    });
     
@@ -20,7 +22,7 @@ class Textformfeildcustom extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      keyboardType: KeyboardType,
+      keyboardType: keyboardType,
       decoration: InputDecoration(
         enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: Color.fromARGB(255, 235, 233, 233))

@@ -2,7 +2,6 @@ import 'package:e_commerce_shoes/presentation/Widget/button.dart';
 import 'package:e_commerce_shoes/presentation/Widget/text.dart';
 import 'package:e_commerce_shoes/presentation/Widget/textFormFeild.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class Recovery extends StatelessWidget {
@@ -36,7 +35,7 @@ class Recovery extends StatelessWidget {
                   child: Column(
                     children: [
                       Textformfeildcustom(
-                        KeyboardType: TextInputType.emailAddress,
+                        keyboardType: TextInputType.emailAddress,
                         controller: emailController,
                         label: "Your Email",
                         prefixIcon: Icons.email,

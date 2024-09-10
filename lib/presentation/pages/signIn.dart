@@ -2,7 +2,6 @@ import 'package:e_commerce_shoes/domain/model/user_model.dart';
 import 'package:e_commerce_shoes/presentation/Widget/button.dart';
 import 'package:e_commerce_shoes/presentation/Widget/text.dart';
 import 'package:e_commerce_shoes/presentation/Widget/textFormFeild.dart';
-import 'package:e_commerce_shoes/data/repository/auth_service.dart';
 import 'package:e_commerce_shoes/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,12 +31,12 @@ class Login extends StatelessWidget {
    
         if (state is AuthLoading) {
           
-          return CircularProgressIndicator(color: Colors.pink);
+          return const CircularProgressIndicator(color: Colors.pink);
         }
       
 
         if (state is Authenticated) {
-         WidgetsBinding.instance?.addPostFrameCallback((_){
+         WidgetsBinding.instance.addPostFrameCallback((_){
           Navigator.pushNamedAndRemoveUntil(context, "/Home",(route)=>false);
          });
         }
@@ -63,7 +62,7 @@ class Login extends StatelessWidget {
               child: Column(
                 children: [
                   Textformfeildcustom(
-                    KeyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.emailAddress,
                     controller: emailController,
                     label: "Email",
                     prefixIcon: Icons.email,
@@ -72,7 +71,7 @@ class Login extends StatelessWidget {
                     height: 15,
                   ),
                   Textformfeildcustom(
-                    KeyboardType: TextInputType.visiblePassword,
+                    keyboardType: TextInputType.visiblePassword,
                     controller: passWordController,
                     label: "Password",
                     prefixIcon: Icons.lock_outline_rounded,

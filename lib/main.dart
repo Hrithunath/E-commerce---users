@@ -3,7 +3,7 @@ import 'package:e_commerce_shoes/presentation/bloc/auth_bloc.dart';
 import 'package:e_commerce_shoes/presentation/pages/home.dart';
 import 'package:e_commerce_shoes/presentation/pages/recovery.dart';
 import 'package:e_commerce_shoes/presentation/pages/signIn.dart';
-import 'package:e_commerce_shoes/presentation/pages/signUp.dart';
+import 'package:e_commerce_shoes/presentation/pages/signup.dart';
 import 'package:e_commerce_shoes/presentation/pages/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: const SplashWrapper(),
+          home: const Home(),
           initialRoute: "/",
           routes: {
             "/SplashWrapper": (context) => const SplashWrapper(),
