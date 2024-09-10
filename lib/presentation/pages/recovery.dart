@@ -19,13 +19,13 @@ class Recovery extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const TextCustom(
+                 TextCustom(
                   text: "Recovery Password",
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                 ),
                 const SizedBox(height: 25,),
-                const TextCustom(
+                TextCustom(
                   text:
                       "Please, enter your email address. You will\nreceive a link to create a new password via email ",
                   fontSize: 17,

@@ -40,10 +40,10 @@ class Register extends StatelessWidget {
         body: Padding(
       padding: const EdgeInsets.only(top: 05,),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        const TextCustom(
+         TextCustom(
           text: "Let’s Get Started",
         ),
-        const TextCustom(
+         TextCustom(
           text: "Create an new account",
         ),
         Form(
@@ -118,7 +118,7 @@ class Register extends StatelessWidget {
                     const SizedBox(
                       width: 45,
                     ),
-                    const TextCustom(
+                     TextCustom(
                       text: "Do you have a account? ",
                       fontSize: 15,
                       fontWeight: FontWeight.w300,

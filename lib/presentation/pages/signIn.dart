@@ -45,12 +45,12 @@ class Login extends StatelessWidget {
           body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          const TextCustom(
+          TextCustom(
             text: "Welcome to LaceChase",
             fontSize: 20,
             fontWeight: FontWeight.w600,
           ),
-          const TextCustom(
+           TextCustom(
             text: "Sign in to continue",
             fontSize: 17,
             color: Colors.grey,
@@ -100,7 +100,7 @@ class Login extends StatelessWidget {
                   const SizedBox(
                     height: 25,
                   ),
-                  const TextCustom(
+                   TextCustom(
                     text: "OR",
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
@@ -109,7 +109,7 @@ class Login extends StatelessWidget {
                   const SizedBox(
                     height: 25,
                   ),
-                  const TextCustom(
+                   TextCustom(
                     text: "Login with Google",
                     fontSize: 17,
                     fontWeight: FontWeight.w500,
@@ -133,7 +133,7 @@ class Login extends StatelessWidget {
                       const SizedBox(
                         width: 45,
                       ),
-                      const TextCustom(
+                       TextCustom(
                         text: "Don’t have a account? ",
                         fontSize: 15,
                         fontWeight: FontWeight.w300,
