@@ -66,12 +66,8 @@ class Recovery extends StatelessWidget {
      if (!formkey.currentState!.validate()) {
       return;
     }
-
       final email = emailController.text.trim();
-
    if (email.isNotEmpty) {
-     
-   
    try {
      await FirebaseAuth.instance
    .sendPasswordResetEmail(email: email);
@@ -81,7 +77,7 @@ class Recovery extends StatelessWidget {
           ),
         );
         await Future.delayed(const Duration(seconds: 2));
-            Navigator.pushReplacementNamed(context, "/login");
+            Navigator.pushReplacementNamed(context, "/Login");
    } catch (e) {
      
        ScaffoldMessenger.of(context).showSnackBar(

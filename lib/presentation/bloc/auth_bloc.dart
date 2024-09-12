@@ -60,25 +60,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     );
 
-    on<SignInEvent>((event, emit)async {
-      emit(AuthLoading());
-      try {
+    // on<SignInEvent>((event, emit)async {
+    //   emit(AuthLoading());
+    //   try {
         
-        final UserCredential = await auth.signInWithEmailAndPassword(
-          email: event.email,
-           password: event.password);
-           final user = UserCredential.user;
+    //     final UserCredential = await auth.signInWithEmailAndPassword(
+    //       email: event.email,
+    //        password: event.password);
+    //        final user = UserCredential.user;
 
-           if (user!=null) {
-             emit(Authenticated(user));
-           }else{
-            emit(UnAuthenticated());
-           }
-      } catch (e) {
+    //        if (user!=null) {
+    //          emit(Authenticated(user));
+    //        }else{
+    //         emit(UnAuthenticated());
+    //        }
+    //   } catch (e) {
         
-        emit(AuthenticatedError(message: e.toString()));
-      }
-    });
+    //     emit(AuthenticatedError(message: e.toString()));
+    //   }
+    // });
 
     //   on<GoogleSignInEvent>((event, emit) async {
     //   emit(AuthLoading());

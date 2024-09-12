@@ -82,7 +82,7 @@ class Login extends StatelessWidget {
                   ButtonCustomized(
                       text: "Sign in",
                       color: const Color.fromARGB(255, 207, 57, 233),
-                      width: 300, // Specific width
+                      width: 300, 
                       height: 50,
                       borderRadius: 10,
                       onPressed: ()async {

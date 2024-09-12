@@ -280,7 +280,7 @@ class Home extends StatelessWidget {
                                   ),
                                 ),
                                  Padding(
-                                  padding: EdgeInsets.only(
+                                  padding: const EdgeInsets.only(
                                       top: 2, left: 8, bottom: 13),
                                   child: TextCustom(
                                     text: "₹2999.00",
