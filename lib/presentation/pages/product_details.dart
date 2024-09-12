@@ -126,7 +126,7 @@ class ProductDetails extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 17),
                 child: Row(
@@ -147,13 +147,13 @@ class ProductDetails extends StatelessWidget {
                 
                  fontSize: 16,),
                ),
-               SizedBox(height: 10,),
+               const SizedBox(height: 10,),
                Center(child: ButtonCustomized(text: "Add To Cart",  color: const Color.fromARGB(255, 207, 57, 233),
                height: 50,
                width: 300,
                borderRadius: 10,
                 onPressed: (){})),
-                SizedBox(height: 15,),
+                const SizedBox(height: 15,),
                 
             ],
           ),
