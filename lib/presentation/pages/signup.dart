@@ -1,4 +1,6 @@
-
+import 'package:e_commerce_shoes/core/Theme/appcolors.dart';
+import 'package:e_commerce_shoes/core/constant/constant.dart';
+import 'package:e_commerce_shoes/core/utils/validator.dart';
 import 'package:e_commerce_shoes/domain/model/user_model.dart';
 import 'package:e_commerce_shoes/presentation/Widget/button.dart';
 import 'package:e_commerce_shoes/presentation/Widget/text.dart';
@@ -26,121 +28,133 @@ class Register extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final passwordAgainController = TextEditingController();
- 
+
   @override
   Widget build(BuildContext context) {
     final authBloc = context.read<AuthBloc>();
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         if (state is Authenticated) {
-          Navigator.pushNamedAndRemoveUntil(context, "/Home",(route)=>false);
+          Navigator.pushNamedAndRemoveUntil(context, "/Home", (route) => false);
         }
-        return  Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.only(top: 05,),
-      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-         TextCustom(
-          text: "Let’s Get Started",
-        ),
-         TextCustom(
-          text: "Create an new account",
-        ),
-        Form(
-          key: formkey,
-          child: Padding(
-            padding: const EdgeInsets.all(25),
-            child: Column(
-              children: [
-                Textformfeildcustom(
-                  keyboardType: TextInputType.emailAddress,
-                  controller: nameController,
-                  label: "Full Name",
-                  hintText: "Enter your FullName",
-                  prefixIcon: Icons.person,
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Textformfeildcustom(
-                  keyboardType: TextInputType.visiblePassword,
-                  controller: emailController,
-                  label: "Your Email",
-                  hintText: "Enter your Email",
-                  prefixIcon: Icons.lock,
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Textformfeildcustom(
-                  keyboardType: TextInputType.visiblePassword,
-                  controller: passwordController,
-                  label: "Password",
-                  hintText: "Enter your password",
-                  prefixIcon: Icons.lock,
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Textformfeildcustom(
-                  keyboardType: TextInputType.visiblePassword,
-                  controller: passwordAgainController,
-                  label: "Password Again",
-                  hintText: "Enter your password Again",
-                  prefixIcon: Icons.lock,
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-                ButtonCustomized(
-                    text: "Sign Up",
-                    color: const Color.fromARGB(255, 207, 57, 233),
-                    width: 300, // Specific width
-                    height: 50,
-                    borderRadius: 10,
-                    onPressed: ()async {
-                      UserModel user = UserModel(
-                        name: nameController.text,
-                        email: emailController.text,
-                        password: passwordController.text,
-                        passwordAgain: passwordAgainController.text
-                      );
-                  context.read<AuthBloc>().add(SignUpEvent(user: user));
 
-                       Navigator.pushNamed(context, "/Login");
-                    }
-                    ),
-                const SizedBox(
-                  height: 25,
+        return Scaffold(
+          body: Padding(
+            padding: EdgeInsets.only(top: screenHeight * 0.02),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextCustom(
+                  text: signupTitle,
+                  fontSize: screenHeight * 0.03,
                 ),
-                Row(
-                  children: [
-                    const SizedBox(
-                      width: 45,
+                TextCustom(
+                  text: signupSubTitle,
+                  fontSize: screenHeight * 0.02,
+                ),
+                Form(
+                  key: formkey,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * 0.08,
+                      vertical: screenHeight * 0.03,
                     ),
-                     TextCustom(
-                      text: "Do you have a account? ",
-                      fontSize: 15,
-                      fontWeight: FontWeight.w300,
+                    child: Column(
+                      children: [
+                        Textformfeildcustom(
+                          keyboardType: TextInputType.name,
+                          controller: nameController,
+                          label: "Full Name",
+                          hintText: "Enter your Full Name",
+                          prefixIcon: Icons.person,
+                          validator: (value) =>
+                              Validator.validateUsername(value),
+                        ),
+                        SizedBox(height: screenHeight * 0.02),
+                        Textformfeildcustom(
+                          keyboardType: TextInputType.emailAddress,
+                          controller: emailController,
+                          label: "Your Email",
+                          hintText: "Enter your Email",
+                          prefixIcon: Icons.email,
+                          validator: (value) => Validator.validateEmail(value),
+                        ),
+                        SizedBox(height: screenHeight * 0.02),
+                        Textformfeildcustom(
+                          keyboardType: TextInputType.visiblePassword,
+                          controller: passwordController,
+                          label: "Password",
+                          hintText: "Enter your password",
+                          prefixIcon: Icons.lock,
+                          obscureText: true,
+                          validator: (value) =>
+                              Validator.validatePassword(value),
+                        ),
+                        SizedBox(height: screenHeight * 0.02),
+                        Textformfeildcustom(
+                          keyboardType: TextInputType.visiblePassword,
+                          controller: passwordAgainController,
+                          label: "Password Again",
+                          hintText: "Re-enter your password",
+                          prefixIcon: Icons.lock,
+                          obscureText: true,
+                          validator: (value) => Validator.validateAgainPassword(
+                              value, passwordController.text),
+                        ),
+                        SizedBox(height: screenHeight * 0.04),
+                        ButtonCustomized(
+                          text: "Sign Up",
+                          color: AppColors.Primarycolor,
+                          width: screenWidth * 0.8,
+                          height: screenHeight * 0.07,
+                          borderRadius: 10,
+                          onPressed: () async {
+                            if (formkey.currentState!.validate()) {
+                              UserModel user = UserModel(
+                                name: nameController.text,
+                                email: emailController.text,
+                                password: passwordController.text,
+                                passwordAgain: passwordAgainController.text,
+                              );
+                              context
+                                  .read<AuthBloc>()
+                                  .add(SignUpEvent(user: user));
+
+                              Navigator.pushNamed(context, "/Login");
+                            }
+                          },
+                        ),
+                        SizedBox(height: screenHeight * 0.03),
+                        Row(
+                          children: [
+                            const SizedBox(width: 45),
+                            TextCustom(
+                              text: "Do you have an account? ",
+                              fontSize: screenHeight * 0.018,
+                              fontWeight: FontWeight.w300,
+                            ),
+                            TextCustom(
+                              onTap: () =>
+                                  Navigator.pushNamed(context, "/Login"),
+                              text: "Sign in",
+                              fontSize: screenHeight * 0.018,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.Primarycolor,
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                    TextCustom(
-                      onTap: () => Navigator.pushNamed(context,"/Login"),
-                      text: "Sign in",
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: const Color.fromARGB(255, 207, 57, 233),
-                    ),
-                  ],
+                  ),
                 ),
               ],
             ),
           ),
-        ),
-      ]),
-    )
-    );
+        );
       },
     );
-    
   }
 }

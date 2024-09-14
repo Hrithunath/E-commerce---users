@@ -1,3 +1,4 @@
+import 'package:e_commerce_shoes/core/Theme/appcolors.dart';
 import 'package:e_commerce_shoes/presentation/Widget/button.dart';
 import 'package:e_commerce_shoes/presentation/Widget/text.dart';
 import 'package:flutter/material.dart';
@@ -121,7 +122,7 @@ class ProductDetails extends StatelessWidget {
                      TextCustom(
                       text: "Laser Blue/Anthracite\n/Watermelon/White",
                       fontSize: 16,
-                      color: Colors.grey,
+                       color:AppColors.Kgrey
                     ),
                   ],
                 ),
@@ -142,13 +143,14 @@ class ProductDetails extends StatelessWidget {
                Padding(
                  padding: const EdgeInsets.all(17),
                  child: TextCustom(text: "The Nike Air Max 270 React ENG combines a full-length React foam midsole with a 270 Max Air unit for unrivaled comfort and a striking visual experience.",
-                 color: Colors.grey,
+                  color:AppColors.Kgrey,
                  height: 1.5,
                 
                  fontSize: 16,),
                ),
                const SizedBox(height: 10,),
-               Center(child: ButtonCustomized(text: "Add To Cart",  color: const Color.fromARGB(255, 207, 57, 233),
+               Center(child: ButtonCustomized(text: "Add To Cart", 
+                  color: AppColors.Primarycolor,
                height: 50,
                width: 300,
                borderRadius: 10,

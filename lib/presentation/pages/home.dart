@@ -1,3 +1,4 @@
+import 'package:e_commerce_shoes/core/Theme/appcolors.dart';
 import 'package:e_commerce_shoes/presentation/Widget/text.dart';
 import 'package:e_commerce_shoes/presentation/Widget/textFormFeild.dart';
 import 'package:e_commerce_shoes/presentation/bloc/auth_bloc.dart';
@@ -21,8 +22,8 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
+    return 
+      SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(10),
@@ -68,7 +69,7 @@ class Home extends StatelessWidget {
                 const SizedBox(height: 10),
                 // Top Categories Section
                  Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: TextCustom(
@@ -110,7 +111,7 @@ class Home extends StatelessWidget {
                                   ),
                                 ),
                                Padding(
-                                  padding: EdgeInsets.all(5.0),
+                                  padding: const EdgeInsets.all(5.0),
                                   child: TextCustom(
                                     text: "Running Shoes",
                                     fontSize: 9,
@@ -128,7 +129,7 @@ class Home extends StatelessWidget {
                 const SizedBox(height: 20),
                 // Second Carousel (popular Shoes)
                Padding(
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -178,7 +179,7 @@ class Home extends StatelessWidget {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(
+                                  padding: const EdgeInsets.only(
                                       top: 8, left: 8, bottom: 0),
                                   child: TextCustom(
                                     text: "Nike Pegasus Plus",
@@ -187,7 +188,7 @@ class Home extends StatelessWidget {
                                   ),
                                 ),
                                  Padding(
-                                  padding: EdgeInsets.only(
+                                  padding: const EdgeInsets.only(
                                       top: 8, left: 8, bottom: 3),
                                   child: TextCustom(
                                     text: "Men's Road Running Shoes",
@@ -195,12 +196,12 @@ class Home extends StatelessWidget {
                                   ),
                                 ),
                                  Padding(
-                                  padding: EdgeInsets.only(
+                                  padding: const EdgeInsets.only(
                                       top: 2, left: 8, bottom: 13),
                                   child: TextCustom(
                                     text: "₹2999.00",
                                     fontSize: 19,
-                                    color: Colors.green,
+                                     color: AppColors.Kgreen,
                                   ),
                                 ),
                               ],
@@ -213,7 +214,7 @@ class Home extends StatelessWidget {
                 ),
                  // third Carousel (New Arrivals)
                 Padding(
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -263,7 +264,7 @@ class Home extends StatelessWidget {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(
+                                  padding: const EdgeInsets.only(
                                       top: 8, left: 8, bottom: 0),
                                   child: TextCustom(
                                     text: "Nike Pegasus Plus",
@@ -272,7 +273,7 @@ class Home extends StatelessWidget {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(
+                                  padding: const EdgeInsets.only(
                                       top: 8, left: 8, bottom: 3),
                                   child: TextCustom(
                                     text: "Men's Road Running Shoes",
@@ -285,7 +286,7 @@ class Home extends StatelessWidget {
                                   child: TextCustom(
                                     text: "₹2999.00",
                                     fontSize: 19,
-                                    color: Colors.green,
+                                    color: AppColors.Kgreen,
                                   ),
                                 ),
                               ],
@@ -300,7 +301,8 @@ class Home extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+        
+      );
+    
   }
 }

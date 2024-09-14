@@ -19,3 +19,20 @@ class AuthenticatedError extends AuthState {
   final String message;
   AuthenticatedError({required this.message});
 }
+
+class GoogleAuthSuccess extends AuthState{
+  
+
+}
+class GoogleAuthFailed extends AuthState{
+  
+  
+}
+class SignOutSuccess extends AuthState{
+  
+  
+}
+class SignOutfailed extends AuthState{
+  
+  
+}

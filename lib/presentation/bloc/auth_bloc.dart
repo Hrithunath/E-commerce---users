@@ -9,6 +9,7 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final FirebaseAuth auth = FirebaseAuth.instance;
+  
 
   AuthBloc() : super(AuthInitial()) {
     on<CheckLoginStatusEvent>((event, emit) async {
@@ -60,36 +61,39 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     );
 
-    // on<SignInEvent>((event, emit)async {
-    //   emit(AuthLoading());
-    //   try {
+    on<SignInEvent>((event, emit)async {
+      emit(AuthLoading());
+      
+      try {
         
-    //     final UserCredential = await auth.signInWithEmailAndPassword(
-    //       email: event.email,
-    //        password: event.password);
-    //        final user = UserCredential.user;
-
-    //        if (user!=null) {
-    //          emit(Authenticated(user));
-    //        }else{
-    //         emit(UnAuthenticated());
-    //        }
-    //   } catch (e) {
+        final UserCredential = await auth.signInWithEmailAndPassword(
+          email: event.email,
+           password: event.password);
+           final user = UserCredential.user;
+           
+           if (user!=null) {
+             emit(Authenticated(user));
+           }else{
+            emit(UnAuthenticated());
+           }
+      } catch (e) {
         
-    //     emit(AuthenticatedError(message: e.toString()));
-    //   }
-    // });
+        emit(AuthenticatedError(message: e.toString()));
+      }
+    });
 
     //   on<GoogleSignInEvent>((event, emit) async {
     //   emit(AuthLoading());
     //   try {
-    //     final googleUser = await googleSignIn.signIn();
+    //     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     //     if (googleUser == null) {
-    //       emit(UnAuthenticated()); // User canceled the sign-in
-    //       return;
+    //       emit(GoogleAuthFailed()); 
+         
     //     }
+    //      else if(){
 
-    //     final googleAuth = await googleUser.authentication;
+    //      }
+    //     final googleAuth = await googleUser?.authentication;
     //     final credential = GoogleAuthProvider.credential(
     //       accessToken: googleAuth.accessToken,
     //       idToken: googleAuth.idToken,
@@ -118,7 +122,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LogoutEvent>((event, emit)async {
       try {
         await auth.signOut();
-        emit(UnAuthenticated());
+        emit(SignOutSuccess());
       } catch (e) {
         emit(AuthenticatedError(message: e.toString()));
       }
