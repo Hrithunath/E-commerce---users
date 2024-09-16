@@ -201,7 +201,7 @@ class Home extends StatelessWidget {
                                   child: TextCustom(
                                     text: "₹2999.00",
                                     fontSize: 19,
-                                     color: AppColors.Kgreen,
+                                     color: AppColors.kgreen,
                                   ),
                                 ),
                               ],
@@ -286,7 +286,7 @@ class Home extends StatelessWidget {
                                   child: TextCustom(
                                     text: "₹2999.00",
                                     fontSize: 19,
-                                    color: AppColors.Kgreen,
+                                    color: AppColors.kgreen,
                                   ),
                                 ),
                               ],

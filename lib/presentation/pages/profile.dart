@@ -26,7 +26,7 @@ class Profile extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                color: AppColors.Primarycolor,
+                color: AppColors.primarycolor,
                 padding: const EdgeInsets.all(20.0),
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,10 +69,12 @@ class Profile extends StatelessWidget {
                 child: ListView(
                   children: [
                     ListTile(
-                      title: const Text('My Orders'),
+                      title: const Text('MyOrders'),
                       leading: const Icon(Icons.receipt_long),
                       trailing: const Icon(Icons.chevron_right),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushReplacementNamed(context, "/MyOrders");
+                      },
                     ),
                     ListTile(
                       title: const Text('Shipping Addresses'),
@@ -97,9 +99,34 @@ class Profile extends StatelessWidget {
                       leading: const Icon(Icons.logout),
                       trailing: const Icon(Icons.chevron_right),
                       onTap: () {
-                        context.read<AuthBloc>().add(LogoutEvent());
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title:  const Center(child: Text('Confirm ',)),
+                              content: const Text(
+                                  'Are you sure you want to sign out?'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .pop(); 
+                                  },
+                                  child: const Text('Cancel'),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    context.read<AuthBloc>().add(LogoutEvent());
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text('Logout'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
                       },
-                    ),
+                    )
                   ],
                 ),
               ),

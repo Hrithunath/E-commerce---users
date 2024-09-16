@@ -28,8 +28,8 @@ final List<Widget> pages = [
     return Scaffold(
       body: pages.elementAt(_currentIndex),
        bottomNavigationBar: BottomNavigationBar(
-         selectedItemColor:   AppColors.Primarycolor,
-  unselectedItemColor:AppColors.Kgrey,
+         selectedItemColor:   AppColors.primarycolor,
+  unselectedItemColor:AppColors.kgrey,
         items: const [
          
         BottomNavigationBarItem(icon: Icon(Icons.home),

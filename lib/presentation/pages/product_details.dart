@@ -122,7 +122,7 @@ class ProductDetails extends StatelessWidget {
                      TextCustom(
                       text: "Laser Blue/Anthracite\n/Watermelon/White",
                       fontSize: 16,
-                       color:AppColors.Kgrey
+                       color:AppColors.kgrey
                     ),
                   ],
                 ),
@@ -143,14 +143,14 @@ class ProductDetails extends StatelessWidget {
                Padding(
                  padding: const EdgeInsets.all(17),
                  child: TextCustom(text: "The Nike Air Max 270 React ENG combines a full-length React foam midsole with a 270 Max Air unit for unrivaled comfort and a striking visual experience.",
-                  color:AppColors.Kgrey,
+                  color:AppColors.kgrey,
                  height: 1.5,
                 
                  fontSize: 16,),
                ),
                const SizedBox(height: 10,),
                Center(child: ButtonCustomized(text: "Add To Cart", 
-                  color: AppColors.Primarycolor,
+                  color: AppColors.primarycolor,
                height: 50,
                width: 300,
                borderRadius: 10,

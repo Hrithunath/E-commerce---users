@@ -37,14 +37,14 @@ class Recovery extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextCustom(
-                    text:fogetPasswordTitle,
+                    text:fogotPasswordTitle,
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
                   ),
                   const SizedBox(height: 25),
                   TextCustom(
                     text:
-                        forgetPasswordSubTitle,
+                        forgotPasswordSubTitle,
                     fontSize: 17,
                   ),
                   const SizedBox(height: 25),
@@ -59,7 +59,7 @@ class Recovery extends StatelessWidget {
                   const SizedBox(height: 30),
                   ButtonCustomized(
                     text: "Continue",
-                      color: AppColors.Primarycolor,
+                      color: AppColors.primarycolor,
                     width: 300,
                     height: 50,
                     borderRadius: 10,
@@ -98,7 +98,7 @@ class Recovery extends StatelessWidget {
             content:
                Text('$passwordFailedToSend ${e.toString()}'),
 
-            backgroundColor: AppColors.Kred
+            backgroundColor: AppColors.kred
           ),
         );
       }

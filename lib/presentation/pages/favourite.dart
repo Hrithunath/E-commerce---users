@@ -30,7 +30,7 @@ class Favourite extends StatelessWidget {
                   crossAxisSpacing: 5,
                   mainAxisSpacing: 5,
                 ),
-                itemCount: 5,
+                itemCount: 10,
                 itemBuilder: (context, index) {
                   return Card(
                     elevation: 5,
@@ -58,7 +58,7 @@ class Favourite extends StatelessWidget {
                                 child: IconButton(
                                   onPressed: () {},
                                   icon: const Icon(Icons.favorite,
-                                   color:AppColors.Kred ),
+                                   color:AppColors.kred ),
                                 ),
                               ),
                             ],
@@ -85,7 +85,7 @@ class Favourite extends StatelessWidget {
                           child: TextCustom(
                             text: "₹2999.00",
                             fontSize: 19,
-                            color: AppColors.Kgreen,
+                            color: AppColors.kgreen,
                           ),
                         ),
                       ],

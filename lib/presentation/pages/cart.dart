@@ -63,7 +63,7 @@ class Cart extends StatelessWidget {
                           TextCustom(
                             text: "₹299,43",
                             fontSize: 19,
-                            color: AppColors.Kgreen,
+                            color: AppColors.kgreen,
                           ),
                           Row(
                             children: [
@@ -115,7 +115,7 @@ class Cart extends StatelessWidget {
       
                 ),
                 ButtonCustomized(text: "Check Out", 
-                  color: AppColors.Primarycolor,
+                  color: AppColors.primarycolor,
                height: 50,
                width: 300,
                borderRadius: 10,
