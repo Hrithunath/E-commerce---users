@@ -31,9 +31,28 @@ class TextCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Text(
+    if (onTap != null) {
+      return InkWell(
+        onTap: onTap,
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+            color: color,
+            fontStyle: fontStyle,
+            letterSpacing: letterSpacing,
+            wordSpacing: wordSpacing,
+            height: height,
+            fontFamily: fontFamily,
+          ),
+          textAlign: textAlign,
+          overflow: overflow,
+          softWrap: true,
+        ),
+      );
+    } else {
+      return Text(
         text,
         style: TextStyle(
           fontSize: fontSize,
@@ -48,7 +67,7 @@ class TextCustom extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         softWrap: true,
-      ),
-    );
+      );
+    }
   }
 }

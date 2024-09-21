@@ -59,98 +59,104 @@ class Login extends StatelessWidget {
             body: Padding(
               padding: EdgeInsets.all(screenWidth * 0.05),
               child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(height: screenHeight * 0.2),
-                    TextCustom(
-                      text: loginTitle,
-                      fontSize: screenWidth * 0.05,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    SizedBox(height: screenHeight * 0.02),
-                    TextCustom(
-                        text: loginSubTitle,
-                        fontSize: screenWidth * 0.045,
-                        color: AppColors.kgrey),
-                    Textformfeildcustom(
-                      keyboardType: TextInputType.emailAddress,
-                      controller: emailController,
-                      label: "Email",
-                      prefixIcon: Icons.email,
-                      validator: (value) => Validator.validateEmail(value),
-                    ),
-                    SizedBox(height: screenHeight * 0.02),
-                    Textformfeildcustom(
-                        keyboardType: TextInputType.visiblePassword,
-                        controller: passWordController,
-                        label: "Password",
-                        prefixIcon: Icons.lock_outline_rounded,
-                        obscureText: isObscure,
-                        sufixIcon:
-                            isObscure ? Icons.visibility_off : Icons.visibility,
-                        validator: (value) =>
-                            Validator.validatePassword(value)),
-                    SizedBox(height: screenHeight * 0.025),
-                    ButtonCustomized(
-                      text: "Sign in",
-                      color: AppColors.primarycolor,
-                      width: screenWidth * 0.7,
-                      height: screenHeight * 0.07,
-                      borderRadius: 10,
-                      onPressed: () async {
-                        if (formkey.currentState!.validate()) {
-                          UserModel user = UserModel(
-                            email: emailController.text.trim(),
-                            password: passWordController.text.trim(),
-                          );
-                          context.read<AuthBloc>().add(SignInEvent(
-                              email: emailController.text,
-                              password: passWordController.text));
-                        }
-                      },
-                    ),
-                   TextCustom(
-            text: "OR",
-            fontSize: screenWidth * 0.04,
-            fontWeight: FontWeight.bold,
-            color: AppColors.kgreylight,
-          ),
-          SizedBox(height: screenHeight * 0.025),
-          TextCustom(
-            text: "Login with Google",
-            fontSize: screenWidth * 0.045,
-            fontWeight: FontWeight.w500,
-            color: AppColors.kgreylight,
-          ),
-          SizedBox(height: screenHeight * 0.025),
-          TextCustom(
-            onTap: () => Navigator.pushNamed(context, "/Recovery"),
-            text: "Forgot Password",
-            fontSize: screenWidth * 0.045,
-            fontWeight: FontWeight.bold,
-            color: AppColors.primarycolor,
-          ),
-          SizedBox(height: screenHeight * 0.025),
-          Row(
-            children: [
-              SizedBox(width: screenHeight * 0.075),
-              TextCustom(
-                text: "Don’t have an account? ",
-                fontSize: screenWidth * 0.04,
-                fontWeight: FontWeight.w300,
-              ),
-              TextCustom(
-                onTap: () => Navigator.pushNamed(context, "/Register"),
-                text: "Register",
-                fontSize: screenWidth * 0.04,
-                fontWeight: FontWeight.bold,
-                color: AppColors.primarycolor,
-              ),
-            ],
-          ),
-          SizedBox(height: screenHeight * 0.025),
-                  ],
+                child: Form(
+                  key: formkey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(height: screenHeight * 0.2),
+                      TextCustom(
+                        text: loginTitle,
+                        fontSize: screenWidth * 0.05,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      SizedBox(height: screenHeight * 0.02),
+                      TextCustom(
+                          text: loginSubTitle,
+                          fontSize: screenWidth * 0.045,
+                          color: AppColors.kgrey),
+                      Textformfeildcustom(
+                        keyboardType: TextInputType.emailAddress,
+                        controller: emailController,
+                        label: "Email",
+                        prefixIcon: Icons.email,
+                        validator: (value) => Validator.validateEmail(value),
+                      ),
+                      SizedBox(height: screenHeight * 0.02),
+                      Textformfeildcustom(
+                          keyboardType: TextInputType.visiblePassword,
+                          controller: passWordController,
+                          label: "Password",
+                          prefixIcon: Icons.lock_outline_rounded,
+                          obscureText: isObscure,
+                          sufixIcon:
+                              isObscure ? Icons.visibility_off : Icons.visibility,
+                          validator: (value) =>
+                              Validator.validatePassword(value)),
+                      SizedBox(height: screenHeight * 0.025),
+                      ButtonCustomized(
+                        text: "Sign in",
+                        color: AppColors.primarycolor,
+                        width: screenWidth * 0.7,
+                        height: screenHeight * 0.07,
+                        borderRadius: 10,
+                        onPressed: () async {
+                          if (formkey.currentState!.validate()) {
+                            UserModel user = UserModel(
+                              email: emailController.text.trim(),
+                              password: passWordController.text.trim(),
+                            );
+                            context.read<AuthBloc>().add(SignInEvent(
+                                email: emailController.text,
+                                password: passWordController.text));
+                          }
+                        },
+                      ),
+                     TextCustom(
+                              text: "OR",
+                              fontSize: screenWidth * 0.04,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.kgreylight,
+                            ),
+                            SizedBox(height: screenHeight * 0.025),
+                            TextCustom(
+                              onTap: () {
+                                  context.read<AuthBloc>().add(GoogleSignInEvent());
+                              },
+                              text: "Login with Google",
+                              fontSize: screenWidth * 0.045,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.kgreylight,
+                            ),
+                            SizedBox(height: screenHeight * 0.025),
+                            TextCustom(
+                              onTap: () => Navigator.pushNamed(context, "/Recovery"),
+                              text: "Forgot Password",
+                              fontSize: screenWidth * 0.045,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.primarycolor,
+                            ),
+                            SizedBox(height: screenHeight * 0.025),
+                            Row(
+                              children: [
+                                SizedBox(width: screenHeight * 0.075),
+                                TextCustom(
+                  text: "Don’t have an account? ",
+                  fontSize: screenWidth * 0.04,
+                  fontWeight: FontWeight.w300,
+                                ),
+                                TextCustom(
+                  onTap: () => Navigator.pushNamed(context, "/Register"),
+                  text: "Register",
+                  fontSize: screenWidth * 0.04,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primarycolor,
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: screenHeight * 0.025),
+                    ],
+                  ),
                 ),
               ),
             ),

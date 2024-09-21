@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
           initialRoute: "/",
           routes: {
             "/SplashWrapper": (context) => const SplashWrapper(),
-            "/Login": (context) => const LoginWrapper(),
+            "/Login": (context) => LoginWrapper(),
             "/Register": (context) =>  RegisterWrapper(),
             "/Recovery": (context) => Recovery(),
             "/Home": (context) => const HomeWrapper(),
