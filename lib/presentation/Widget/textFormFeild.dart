@@ -26,6 +26,7 @@ class Textformfeildcustom extends StatelessWidget {
     return TextFormField(
       controller: controller,
       keyboardType: keyboardType,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Color.fromARGB(255, 235, 233, 233))),
