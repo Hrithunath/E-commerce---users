@@ -88,13 +88,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       try {
         final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
         print("print from signin Event${googleUser!.displayName}");
-        // if (googleUser == null) {
-        //   emit(GoogleAuthFailed()); 
-         
-        // }
-        //  else {
-        //   emit (GoogleAuthSuccess());
-        //  }
+        
         final googleAuth = await googleUser?.authentication;
         final credential = GoogleAuthProvider.credential(
           accessToken: googleAuth?.accessToken,

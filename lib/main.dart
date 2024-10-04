@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home:  const SplashWrapper(),
+          home: SplashWrapper(),
           theme: ThemeData(primaryColor: Colors.pink),
           initialRoute: "/",
           routes: {

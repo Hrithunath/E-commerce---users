@@ -3,6 +3,7 @@ import 'package:e_commerce_shoes/core/Theme/appcolors.dart';
 import 'package:e_commerce_shoes/presentation/Widget/text.dart';
 import 'package:e_commerce_shoes/presentation/Widget/textFormFeild.dart';
 import 'package:e_commerce_shoes/presentation/bloc/auth_bloc.dart';
+import 'package:e_commerce_shoes/presentation/pages/product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,14 +23,29 @@ class Home extends StatelessWidget {
   const Home({super.key});
 
   Future<List<Map<String, dynamic>>> fetchCategories() async {
-    // Fetch the categories from Firestore
     QuerySnapshot snapshot =
         await FirebaseFirestore.instance.collection('categories').get();
-      
-    // Convert documents to a list of Maps
     return snapshot.docs
         .map((doc) => doc.data() as Map<String, dynamic>)
         .toList();
+  }
+
+  Future<List<Map<String, dynamic>>> fetchProducts() async {
+    QuerySnapshot snapshot =
+        await FirebaseFirestore.instance.collection('products').get();
+    return snapshot.docs
+        .map((doc) => doc.data() as Map<String, dynamic>)
+        .toList();
+  }
+
+  Future<List<Map<String, dynamic>>> fetchTopCollections() async {
+    var products = await fetchProducts();
+    return products.where((product) => product['isTopCollection'] == true).toList();
+  }
+
+  Future<List<Map<String, dynamic>>> fetchNewArrivals() async {
+    var products = await fetchProducts();
+    return products.where((product) => product['isNewArrival'] == true).toList();
   }
 
   @override
@@ -100,7 +116,7 @@ class Home extends StatelessWidget {
                     return const Text("No categories found");
                   }
 
-                  // The fetched categories from Firestore
+                
                   var categories = snapshot.data!;
                   return SizedBox(
                     height: 100,
@@ -110,34 +126,28 @@ class Home extends StatelessWidget {
                       itemBuilder: (context, index) {
                         var category = categories[index];
                             print('${category}');
-                        // Initialize imageUrl from the category map or use a placeholder if null
+                           
                         String imageUrl = category['imageUrl'] ?? 'https://via.placeholder.com/100'; 
+                     
 
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                          child: Card(
-                            elevation: 2,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
+                         
                             child: SizedBox(
                               width: 100,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Expanded(
-                                    child: Container(
-                                      decoration: const BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(20),
-                                        ),
-                                      ),
+                                    child: Card(
+                                      
+                                     elevation: 3,
                                       child: Image.network(
-                                        imageUrl, // Use the initialized imageUrl here
+                                        imageUrl, 
                                         fit: BoxFit.cover,
                                         errorBuilder: (context, error, stackTrace) {
-                                          // If the image fails to load, show a default image
-                                          return Image.network('https://via.placeholder.com/100');
+                                          
+                                          return Image.network('https://via.placeholder.com/100',);
                                         },
                                       ),
                                     ),
@@ -146,14 +156,14 @@ class Home extends StatelessWidget {
                                     padding: const EdgeInsets.all(5.0),
                                     child: TextCustom(
                                       text: category['categoryName'] ?? 'Unknown', 
-                                      fontSize: 9,
+                                      fontSize: 12,
                                       fontWeight: FontWeight.w800,
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                          ),
+                          
                         );
                       },
                     ),
@@ -161,7 +171,7 @@ class Home extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 20),
-              // Second Carousel (popular Shoes)
+              // Second Carousel Top collection
               Padding(
                 padding: const EdgeInsets.all(8),
                 child: Row(
@@ -180,72 +190,94 @@ class Home extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+               FutureBuilder<List<Map<String, dynamic>>>(
+                future: fetchTopCollections(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text("Error: ${snapshot.error}");
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return const Text("No Top Collections found");
+                  }
+
+                  var topCollections = snapshot.data!;
+                  return SizedBox(
                 height: 350,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 15,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: SizedBox(
-                        width: 350,
-                        child: Card(
-                          elevation: 5,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  height: 250,
-                                  decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                      image: NetworkImage(
-                                        "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/78b1c276-1a6e-4048-a5c8-6f8d1747e837/PEGASUS+PLUS.png",
+              
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: topCollections.length,
+                      itemBuilder: (context, index) {
+                        
+                        var product1 = topCollections[index];
+                           List<dynamic> imageList = product1['uploadImages']  ?? 'https://via.placeholder.com/100';
+                         print("${product1}");
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: SizedBox(
+                            width: 350,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductDetails(productDetails: product1,)));
+                              },
+                              child: Card(
+                                
+                                elevation: 5,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        height: 250,
+                                        child: Image.network(
+                                         imageList[0], 
+                                          fit: BoxFit.cover,
+                                          errorBuilder: (context, error, stackTrace) {
+                                            
+                                            return Image.network('https://via.placeholder.com/100',);
+                                          },
+                                        ),
                                       ),
-                                      fit: BoxFit.cover,
                                     ),
-                                  ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 8, left: 8),
+                                      child: TextCustom(
+                                        text: product1['productName'] ?? 'Unknown',
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    // Padding(
+                                    //   padding: const EdgeInsets.only(top: 8, left: 8),
+                                    //   child: TextCustom(
+                                    //     text: product1['productDescription'] ?? 'No Description',
+                                    //     fontSize: 16,
+                                    //   ),
+                                    // ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 2, left: 8, bottom: 13),
+                                      child: TextCustom(
+                                        text: "₹${product1['price']}",
+                                        fontSize: 19,
+                                        color: AppColors.kgreen,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 8, left: 8, bottom: 0),
-                                child: TextCustom(
-                                  text: "Nike Pegasus Plus",
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 8, left: 8, bottom: 3),
-                                child: TextCustom(
-                                  text: "Men's Road Running Shoes",
-                                  fontSize: 16,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 2, left: 8, bottom: 13),
-                                child: TextCustom(
-                                  text: "₹2999.00",
-                                  fontSize: 19,
-                                  color: AppColors.kgreen,
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                        );
+                      },
+                    ),
+                  );
+                },
               ),
-              // third Carousel (New Arrivals)
+              // New Arrivals Section 
               Padding(
                 padding: const EdgeInsets.all(8),
                 child: Row(
@@ -264,70 +296,83 @@ class Home extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 350,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 15,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: SizedBox(
-                        width: 350,
-                        child: Card(
-                          elevation: 5,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  height: 250,
-                                  decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                      image: NetworkImage(
-                                        "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/78b1c276-1a6e-4048-a5c8-6f8d1747e837/PEGASUS+PLUS.png",
+              FutureBuilder<List<Map<String, dynamic>>>(
+                future: fetchNewArrivals(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text("Error: ${snapshot.error}");
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return const Text("No New Arrivals found");
+                  }
+
+                  var newArrivals = snapshot.data!;
+                  return SizedBox(
+                    height: 350,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: newArrivals.length,
+                      itemBuilder: (context, index) {
+                        var product2 = newArrivals[index];
+                         List<dynamic> imageList = product2['uploadImages'] ?? 'https://via.placeholder.com/100';
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: SizedBox(
+                            width: 350,
+                            child: Card(
+                              elevation: 5,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      height: 250,
+                                       child: Image.network(
+                                        imageList[0], 
+                                        fit: BoxFit.cover,
+                                        errorBuilder: (context, error, stackTrace) {
+                                          
+                                          return Image.network('https://via.placeholder.com/100',);
+                                        },
                                       ),
-                                      fit: BoxFit.cover,
                                     ),
                                   ),
-                                ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8, left: 8),
+                                    child: TextCustom(
+                                      text: product2['productName'] ?? 'Unknown',
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  // Padding(
+                                  //   padding: const EdgeInsets.only(top: 8, left: 8),
+                                  //   child: TextCustom(
+                                  //     text: product2['productDescription'] ?? 'No Description',
+                                  //     fontSize: 16,
+                                  //   ),
+                                  // ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 2, left: 8, bottom: 13),
+                                    child: TextCustom(
+                                      text: "₹${product2['price'] ?? "0"}",
+                                      fontSize: 19,
+                                      color: AppColors.kgreen,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 8, left: 8, bottom: 0),
-                                child: TextCustom(
-                                  text: "Nike Pegasus Plus",
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 8, left: 8, bottom: 3),
-                                child: TextCustom(
-                                  text: "Men's Road Running Shoes",
-                                  fontSize: 16,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 2, left: 8, bottom: 13),
-                                child: TextCustom(
-                                  text: "₹2999.00",
-                                  fontSize: 19,
-                                  color: AppColors.kgreen,
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                        );
+                      },
+                    ),
+                  );
+                },
               ),
             ],
           ),
@@ -335,5 +380,4 @@ class Home extends StatelessWidget {
       ),
     );
   }
-  
 }
