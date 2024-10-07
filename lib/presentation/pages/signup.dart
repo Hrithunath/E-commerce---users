@@ -2,6 +2,7 @@ import 'package:e_commerce_shoes/core/Theme/appcolors.dart';
 import 'package:e_commerce_shoes/core/constant/constant.dart';
 import 'package:e_commerce_shoes/core/utils/validator.dart';
 import 'package:e_commerce_shoes/domain/model/user_model.dart';
+import 'package:e_commerce_shoes/presentation/Widget/Register/signup_button.dart';
 import 'package:e_commerce_shoes/presentation/Widget/button.dart';
 import 'package:e_commerce_shoes/presentation/Widget/text.dart';
 import 'package:e_commerce_shoes/presentation/Widget/textFormFeild.dart';
@@ -106,15 +107,7 @@ class Register extends StatelessWidget {
                       height: screenHeight * 0.07,
                       borderRadius: 10,
                       onPressed: () async {
-                        if (formkey.currentState!.validate()) {
-                          UserModel user = UserModel(
-                            name: nameController.text,
-                            email: emailController.text,
-                            password: passwordController.text,
-                            passwordAgain: passwordAgainController.text,
-                          );
-                          context.read<AuthBloc>().add(SignUpEvent(user: user));
-                        }
+                        SignButton(context);
                       },
                     ),
                     SizedBox(height: screenHeight * 0.03),
@@ -140,4 +133,6 @@ class Register extends StatelessWidget {
       );
     });
   }
+
+
 }

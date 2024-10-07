@@ -3,6 +3,8 @@ import 'package:e_commerce_shoes/core/constant/constant.dart';
 import 'package:e_commerce_shoes/core/utils/validator.dart';
 import 'package:e_commerce_shoes/domain/model/user_model.dart';
 import 'package:e_commerce_shoes/presentation/Widget/button.dart';
+import 'package:e_commerce_shoes/presentation/Widget/login/signin_button.dart';
+import 'package:e_commerce_shoes/presentation/Widget/login/signin_options.dart';
 import 'package:e_commerce_shoes/presentation/Widget/text.dart';
 import 'package:e_commerce_shoes/presentation/Widget/textFormFeild.dart';
 import 'package:e_commerce_shoes/presentation/bloc/auth_bloc.dart';
@@ -101,15 +103,7 @@ class Login extends StatelessWidget {
                         height: screenHeight * 0.07,
                         borderRadius: 10,
                         onPressed: () async {
-                          if (formkey.currentState!.validate()) {
-                            UserModel user = UserModel(
-                              email: emailController.text.trim(),
-                              password: passWordController.text.trim(),
-                            );
-                            context.read<AuthBloc>().add(SignInEvent(
-                                email: emailController.text,
-                                password: passWordController.text));
-                          }
+                          SigninButton(context);
                         },
                       ),
                      TextCustom(
@@ -137,23 +131,7 @@ class Login extends StatelessWidget {
                               color: AppColors.primarycolor,
                             ),
                             SizedBox(height: screenHeight * 0.025),
-                            Row(
-                              children: [
-                                SizedBox(width: screenHeight * 0.075),
-                                TextCustom(
-                  text: "Don’t have an account? ",
-                  fontSize: screenWidth * 0.04,
-                  fontWeight: FontWeight.w300,
-                                ),
-                                TextCustom(
-                  onTap: () => Navigator.pushNamed(context, "/Register"),
-                  text: "Register",
-                  fontSize: screenWidth * 0.04,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.primarycolor,
-                                ),
-                              ],
-                            ),
+                            Register(screenHeight: screenHeight, screenWidth: screenWidth),
                             SizedBox(height: screenHeight * 0.025),
                     ],
                   ),
@@ -165,4 +143,6 @@ class Login extends StatelessWidget {
       },
     );
   }
+
+  
 }

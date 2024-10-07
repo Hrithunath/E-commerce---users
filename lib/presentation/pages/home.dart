@@ -320,51 +320,56 @@ class Home extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: SizedBox(
                             width: 350,
-                            child: Card(
-                              elevation: 5,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      height: 250,
-                                       child: Image.network(
-                                        imageList[0], 
-                                        fit: BoxFit.cover,
-                                        errorBuilder: (context, error, stackTrace) {
-                                          
-                                          return Image.network('https://via.placeholder.com/100',);
-                                        },
+                            child: InkWell(
+                               onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductDetails(productDetails: product2,)));
+                              },
+                              child: Card(
+                                elevation: 5,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        height: 250,
+                                         child: Image.network(
+                                          imageList[0], 
+                                          fit: BoxFit.cover,
+                                          errorBuilder: (context, error, stackTrace) {
+                                            
+                                            return Image.network('https://via.placeholder.com/100',);
+                                          },
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 8, left: 8),
-                                    child: TextCustom(
-                                      text: product2['productName'] ?? 'Unknown',
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 8, left: 8),
+                                      child: TextCustom(
+                                        text: product2['productName'] ?? 'Unknown',
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  // Padding(
-                                  //   padding: const EdgeInsets.only(top: 8, left: 8),
-                                  //   child: TextCustom(
-                                  //     text: product2['productDescription'] ?? 'No Description',
-                                  //     fontSize: 16,
-                                  //   ),
-                                  // ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 2, left: 8, bottom: 13),
-                                    child: TextCustom(
-                                      text: "₹${product2['price'] ?? "0"}",
-                                      fontSize: 19,
-                                      color: AppColors.kgreen,
+                                    // Padding(
+                                    //   padding: const EdgeInsets.only(top: 8, left: 8),
+                                    //   child: TextCustom(
+                                    //     text: product2['productDescription'] ?? 'No Description',
+                                    //     fontSize: 16,
+                                    //   ),
+                                    // ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 2, left: 8, bottom: 13),
+                                      child: TextCustom(
+                                        text: "₹${product2['price'] ?? "0"}",
+                                        fontSize: 19,
+                                        color: AppColors.kgreen,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
