@@ -103,7 +103,15 @@ class Login extends StatelessWidget {
                         height: screenHeight * 0.07,
                         borderRadius: 10,
                         onPressed: () async {
-                          SigninButton(context);
+                          if (formkey.currentState!.validate()) {
+      UserModel user = UserModel(
+        email: emailController.text.trim(),
+        password: passWordController.text.trim(),
+      );
+      context.read<AuthBloc>().add(SignInEvent(
+          email: emailController.text,
+          password: passWordController.text));
+    }
                         },
                       ),
                      TextCustom(
