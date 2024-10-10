@@ -30,7 +30,8 @@ class SplashScreen extends StatelessWidget {
         height: double.infinity,
         width: double.infinity,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment:
+           MainAxisAlignment.center,
           children: [
             Image.asset("lib/assets/image/leather-shoes-wooden-background_1203-7617.png")
 
