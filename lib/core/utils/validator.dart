@@ -37,4 +37,40 @@ class Validator {
     }
     return null;
   }
+
+  static String? validateText(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please provide the necessary details';
+    }
+    return null;
+  }
+
+static String? validatePhoneNumber(String? value) {
+  if (value == null || value.isEmpty) {
+    return 'Phone number is required';
+  }
+
+  final phoneRegExp = RegExp(r'^\+?0[0-9]{9,15}$');
+  if (!phoneRegExp.hasMatch(value)) {
+    return 'Enter a valid phone number';
+  }
+  
+  return null;
+}
+
+ static String? validatePinCode(String? value) {
+  if (value == null || value.isEmpty) {
+    return 'PIN code is required';
+  }
+
+  final pinRegExp = RegExp(r'^[0-9]{6}$');
+  if (!pinRegExp.hasMatch(value)) {
+    return 'Enter a valid 6-digit PIN code';
+  }
+
+  return null;
+}
+
+
+
 }

@@ -2,6 +2,8 @@ import 'package:e_commerce_shoes/firebase_options.dart';
 import 'package:e_commerce_shoes/presentation/bloc/ForgotPassword/forgot_password_bloc.dart';
 import 'package:e_commerce_shoes/presentation/bloc/auth_bloc.dart';
 import 'package:e_commerce_shoes/presentation/pages/Home.Screen.dart';
+import 'package:e_commerce_shoes/presentation/pages/address/add_address.dart';
+import 'package:e_commerce_shoes/presentation/pages/address/address.dart';
 import 'package:e_commerce_shoes/presentation/pages/orders.dart';
 import 'package:e_commerce_shoes/presentation/pages/home.dart';
 import 'package:e_commerce_shoes/presentation/pages/recovery.dart';
@@ -40,7 +42,7 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: SplashWrapper(),
+          home: AddAddress(),
           theme: ThemeData(primaryColor: Colors.pink),
           initialRoute: "/",
           routes: {
