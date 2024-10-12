@@ -1,7 +1,6 @@
 import 'package:e_commerce_shoes/core/Theme/appcolors.dart';
 import 'package:e_commerce_shoes/core/constant/constant.dart';
 import 'package:e_commerce_shoes/core/utils/validator.dart';
-import 'package:e_commerce_shoes/domain/model/user_model.dart';
 import 'package:e_commerce_shoes/presentation/Widget/Register/signup_button.dart';
 import 'package:e_commerce_shoes/presentation/Widget/button.dart';
 import 'package:e_commerce_shoes/presentation/Widget/text.dart';

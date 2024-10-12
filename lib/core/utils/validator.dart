@@ -50,12 +50,18 @@ static String? validatePhoneNumber(String? value) {
     return 'Phone number is required';
   }
 
-  final phoneRegExp = RegExp(r'^\+?0[0-9]{9,15}$');
-  if (!phoneRegExp.hasMatch(value)) {
-    return 'Enter a valid phone number';
+
+  final numericRegex = RegExp(r'^[0-9]+$');
+  if (!numericRegex.hasMatch(value)) {
+    return 'Phone number must contain only digits';
   }
+
   
-  return null;
+  if (value.length != 10) {
+    return 'Phone number must be exactly 10 digits';
+  }
+
+  return null; 
 }
 
  static String? validatePinCode(String? value) {
@@ -72,5 +78,5 @@ static String? validatePhoneNumber(String? value) {
 }
 
 
-
 }
+

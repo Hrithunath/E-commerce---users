@@ -10,6 +10,7 @@ import 'package:e_commerce_shoes/presentation/pages/recovery.dart';
 import 'package:e_commerce_shoes/presentation/pages/signin.dart';
 import 'package:e_commerce_shoes/presentation/pages/signup.dart';
 import 'package:e_commerce_shoes/presentation/pages/splash.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,6 +29,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  String get userId {
+    User? user = FirebaseAuth.instance.currentUser;
+    return user?.uid ?? ""; // Return an empty string if user is not logged in
+  }
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -42,17 +47,18 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: AddAddress(),
+          home: ShippedAddress(userId: userId),
           theme: ThemeData(primaryColor: Colors.pink),
           initialRoute: "/",
           routes: {
             "/SplashWrapper": (context) => const SplashWrapper(),
-            "/Login": (context) => LoginWrapper(),
-            "/Register": (context) =>  RegisterWrapper(),
-            "/Recovery": (context) => Recovery(),
-            "/Home": (context) => const HomeWrapper(),
-            "/HomeBottom":(context) =>  const HomeBottomnavigation(),
-            "/MyOrders":(context) => const MyOrders(),
+          "/Login": (context) => LoginWrapper(),
+          "/Register": (context) => RegisterWrapper(),
+          "/Recovery": (context) => Recovery(),
+          "/Home": (context) => const HomeWrapper(),
+          "/HomeBottom": (context) => const HomeBottomnavigation(),
+          "/MyOrders": (context) => const MyOrders(),
+          "/ShippedAddress": (context) => ShippedAddress(userId: userId),
           }),
     );
   }
