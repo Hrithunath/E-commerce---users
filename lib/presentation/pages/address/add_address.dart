@@ -37,22 +37,24 @@ class AddAddress extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
             
-            Textformfeildcustom(label: "Name",prefixIcon: Icons.person_sharp,
+            Textformfeildcustom(label: "Name",prefixIcon: Icons.person_sharp,keyboardType: TextInputType.text,
+             validator: (value) =>
+                                Validator.validateText(value)
+                                
+                                ),
+            const SizedBox(height: 10,),
+            Textformfeildcustom(label: "Address",prefixIcon: Icons.place,keyboardType: TextInputType.text,
              validator: (value) =>
                                 Validator.validateText(value)),
             const SizedBox(height: 10,),
-            Textformfeildcustom(label: "Address",prefixIcon: Icons.place,
-             validator: (value) =>
-                                Validator.validateText(value)),
-            const SizedBox(height: 10,),
-            Textformfeildcustom(label: "Pin",prefixIcon: Icons.pin,
+            Textformfeildcustom(label: "Pin",prefixIcon: Icons.pin,keyboardType: TextInputType.number,
             validator: (value) => Validator.validatePinCode(value),),
             const SizedBox(height: 10,),
-            Textformfeildcustom(label: "State",prefixIcon: Icons.business,
+            Textformfeildcustom(label: "State",prefixIcon: Icons.business,keyboardType: TextInputType.text,
              validator: (value) =>
                                 Validator.validateText(value)),
             const SizedBox(height: 10,),
-             Textformfeildcustom(label: "Phone",prefixIcon: Icons.phone,
+             Textformfeildcustom(label: "Phone",prefixIcon: Icons.phone,keyboardType: TextInputType.number,
              validator: (value) => 
              Validator.validatePhoneNumber(value)),
                const SizedBox(height: 16,),

@@ -23,7 +23,9 @@ class Menu extends StatelessWidget {
           title: const Text('Shipping Addresses'),
           leading: const Icon(Icons.location_on),
           trailing: const Icon(Icons.chevron_right),
-          onTap: () {},
+          onTap: () {
+          
+          },
         ),
         ListTile(
           title: const Text('Payment Methods'),
