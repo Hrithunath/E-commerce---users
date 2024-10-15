@@ -5,7 +5,7 @@ void showSnackBarMessage(BuildContext context, String message, Color color) {
     SnackBar(
       content: Text(message),
       duration: const Duration(seconds: 3),
-      backgroundColor: color, // Set the background color dynamically
+      backgroundColor: color, 
     ),
   );
 }
